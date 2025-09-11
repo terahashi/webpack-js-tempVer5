@@ -13,6 +13,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+      {
         test: /\.s[ac]ss$/,
         use: [
           //⬇︎下記の記載の意味は　本番ビルドではMiniCssExtractPluginを使い、開発中はstyle-loaderでHotReloadを利用する
@@ -32,6 +42,14 @@ module.exports = {
           'css-loader',
           'postcss-loader', //⬅︎css
         ],
+      },
+      {
+        test: /\.(jpe?g|gif|png|svg|woff2?|ttf|eot)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]', //出力先
+          //publicPath: 'https://', //CDNやブラウザから参照するときのパス
+        },
       },
     ],
   },
