@@ -103,10 +103,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sub__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sub */ "./src/sub.js");
 /* harmony import */ var _sub__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_sub__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scss/app.scss */ "./src/scss/app.scss");
-//⬇︎ 「babel.config.js」のuseBuiltInsオプションで「下記を書かなくても良くなる。」
-// import 'regenerator-runtime';
-// import 'core-js';
-
 
 
 console.log('Hello, app.js Webpack 5!');
@@ -115,23 +111,17 @@ console.log('Hello, app.js Webpack 5!');
 //   import('@scss/app');
 // }, 2000);
 
-const init = () => {
-  console.log('init');
+const init = async () => {
+  // utils.log('hello utils.js');
+  await asyncFn();
+  jQuery();
 };
 const init2 = () => {
-  console.log('init');
+  console.log('init2');
 };
-
-// const init = async () => {
-//   utils.log('hello utils.js');
-//   await asyncFn();
-//   jQuery();
-// };
-
-// async function asyncFn() {
-//   console.log([1, 2, 3].includes(0));
-// }
-
+async function asyncFn() {
+  console.log([1, 2, 3].includes(0));
+}
 init();
 init2();
 }();
