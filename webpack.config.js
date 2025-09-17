@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -15,15 +16,13 @@ module.exports = {
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: 'babel-loader',
       },
       {
         test: /\.s[ac]ss$/,
         use: [
-          //⬇︎下記の記載の意味は　本番ビルドではMiniCssExtractPluginを使い、開発中はstyle-loaderでHotReloadを利用する
           // process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          //⬆︎上記の意味は　本番ビルドではMiniCssExtractPluginを使い、開発中はstyle-loaderでHotReloadを利用する
 
           MiniCssExtractPlugin.loader,
           // 'style-loader',
@@ -53,9 +52,14 @@ module.exports = {
 
   plugins: [
     new MiniCssExtractPlugin(
-      { filename: 'style.css' }
-      // { filename: '[name].css' }
+      { filename: 'style.css' } //⬅︎cssのファイル名が「style.css」になる。
+      // { filename: '[name].css' } //⬅︎cssのファイル名が「app.css」になる。
     ),
+    new ESLintPlugin({
+      extensions: ['js'],
+      emitWarning: true,
+      failOnError: false, // trueにするとエラーでビルド停止
+    }),
   ],
 
   devServer: {

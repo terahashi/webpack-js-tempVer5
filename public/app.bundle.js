@@ -114,10 +114,10 @@ console.log('Hello, app.js Webpack 5!');
 const init = async () => {
   // utils.log('hello utils.js');
   await asyncFn();
-  jQuery();
+  // jQuery();
 };
 const init2 = () => {
-  console.log('init2');
+  console.log('hello init2');
 };
 async function asyncFn() {
   console.log([1, 2, 3].includes(0));
