@@ -58,7 +58,9 @@ module.exports = {
     new ESLintPlugin({
       extensions: ['js'],
       emitWarning: true,
-      failOnError: false, // trueにするとエラーでビルド停止
+      failOnError: false, //trueにするとエラーでビルド停止
+      fix: true, //fixの自動修正を有効化
+      //overrideConfigFile: '.eslintrc.js', // ←従来設定'.eslintrc.js'を使う。(最新の方法はeslint.config.jsのFlatConfigという手法である)
     }),
   ],
 
