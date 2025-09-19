@@ -2,7 +2,7 @@ import './sub';
 import './scss/app.scss';
 import jQuery from 'jquery';
 
-console.log('Hello, app.js Webpack 5!');
+console.log('Hello, app.js Webpack 5 OKKKK!');
 
 // setTimeout(() => {
 //   import('@scss/app');

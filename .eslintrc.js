@@ -1,28 +1,28 @@
 module.exports = {
-  root: true,
+  root: true, //このファイルをプロジェクトのルートESLint設定として扱う
   parser: '@babel/eslint-parser', //Babelで解析する
   parserOptions: {
     babelOptions: {
-      presets: ['@babel/preset-env'],
+      presets: ['@babel/preset-env'], //BabelでES6+を変換するプリセットを指定
     },
     ecmaVersion: 2025, //ECMAScriptのバージョン
-    sourceType: 'module', // "script" or "module" (ESModulesを使うならmodule。import/export を使う)
-    requireConfigFile: false, //⬅︎Babel設定ファイルが存在しなくてもESLintが動く。小規模プロジェクトやBabel設定を別途作らない場合に役立つ。
+    sourceType: 'module', // "script" or "module" (ESModulesを使うなら'module'。import/export を使う)
+    requireConfigFile: false, //⬅︎Babel設定ファイルなしでもESLintが動く。小規模プロジェクトやBabel設定を別途作らない場合に役立つ。
   },
   env: {
-    browser: true,
-    node: true,
-    es6: true,
+    browser: true, // ブラウザ環境のグローバル変数を許可（windowなど
+    node: true, // Node.js環境のグローバル変数を許可（global, processなど）
+    es6: true, // ES6のグローバル変数や構文を許可（let, constなど）
   },
   extends: [
     'eslint:recommended', // ESLint推奨ルール
     'airbnb-base', // Airbnbベースルール
   ],
   globals: {
-    jQuery: 'readonly', // 読み取り専用
-    $: 'readonly', // 読み取り専用
+    jQuery: 'readonly', // jQuery変数を読み取り専用として許可
+    $: 'readonly', // $変数を読み取り専用として許可（jQuery用）
   },
-  plugins: ['import'], //⬅︎存在しないファイルをimportした場合に警告
+  plugins: ['import'], //import文の正当性チェック用プラグインを使用。存在しないファイルをimportした場合に「警告」を出す
   rules: {
     'no-undef': 'off', //グローバル変数を定義しているので、'no-undef'を'off'にする
     'no-console': 'off', //'off'でconsole.logを使っても警告やエラーが出ない

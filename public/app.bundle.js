@@ -10835,7 +10835,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-console.log('Hello, app.js Webpack 5!');
+console.log('Hello, app.js Webpack 5 OKKKK!');
 
 // setTimeout(() => {
 //   import('@scss/app');
