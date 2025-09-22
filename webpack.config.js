@@ -1,6 +1,8 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const { Template } = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -10,6 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: '[name].bundle.js',
+    // filename: '[name].[contenthash].bundle.js', //⬅︎[contenthash]が推奨されている。✖︎[hash]と[chunkhash]は非推奨
   },
   module: {
     rules: [
@@ -24,11 +27,11 @@ module.exports = {
           // process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
           //⬆︎上記の意味は　本番ビルドではMiniCssExtractPluginを使い、開発中はstyle-loaderでHotReloadを利用する
 
-          MiniCssExtractPlugin.loader,
           // 'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          'sass-loader', //⬅︎sass
+          'sass-loader',
         ],
       },
       {
@@ -60,6 +63,10 @@ module.exports = {
       emitWarning: true,
       failOnError: false, //trueにするとエラーでビルド停止
       fix: true, //fixの自動修正を有効化
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      inject: 'body',
     }),
   ],
 
