@@ -1,7 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const { Template } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -44,11 +43,31 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|gif|png|svg|woff2?|ttf|eot)$/,
-        type: 'asset/resource',
+        type: 'asset/resource', //⬅︎file-loaderの代わり。file-loaderはwebpack5では非推奨
         generator: {
           filename: 'images/[name][ext]', //出力先
           //publicPath: 'https://', //CDNやブラウザから参照するときのパス
         },
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+            options: {
+              sources: {
+                list: [
+                  '...', //⬅︎['...']と書くと「デフォルト設定を引き継ぐ」という意味。「例えばデフォルトでは含まれるものは<img src="..."> <link href="...">など。
+                  {
+                    tag: 'img', //対象にする「HTMLタグ名(この場合はimgタグ)」を指定
+                    attribute: 'src', //そのimgタグの「どの属性を解決するか」を指定
+                    type: 'src', //その属性値をどう解釈するかを指定する。「src」の場合はリソースのパスとして扱いwebpackに渡す(例:画像ファイル)
+                  },
+                ],
+              },
+            },
+          },
+        ],
       },
     ],
   },
