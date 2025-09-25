@@ -1,17 +1,14 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-  mode: 'development',
-  // devtool: 'source-map',
-  devtool: false,
+module.exports = ({ outputFile, assetFile }) => ({
   entry: { app: './src/app.js', sub: './src/sub.js' },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name].bundle.js',
-    // filename: '[name].[contenthash].bundle.js', //⬅︎[contenthash]が推奨されている。✖︎[hash]と[chunkhash]は非推奨
+    filename: `${outputFile}.js`,
+    // filename: '[name].[contenthash].bundle.js', //⬅︎ハッシュを使うなら[contenthash]が推奨されている。✖︎[hash]と[chunkhash]は非推奨
+    clean: true, //publicフォルダを一度削除してからビルドする
   },
   module: {
     rules: [
@@ -45,7 +42,7 @@ module.exports = {
         test: /\.(jpe?g|gif|png|svg|woff2?|ttf|eot)$/,
         type: 'asset/resource', //⬅︎file-loaderの代わり。file-loaderはwebpack5では非推奨
         generator: {
-          filename: 'images/[name][ext]', //出力先
+          filename: `images/${assetFile}[ext]`, //出力先はimages。
           //publicPath: 'https://', //CDNやブラウザから参照するときのパス
         },
       },
@@ -74,7 +71,7 @@ module.exports = {
 
   plugins: [
     new MiniCssExtractPlugin(
-      { filename: 'style.css' } //⬅︎cssのファイル名が「style.css」になる。
+      { filename: `${outputFile}.css` } //⬅︎cssのファイル名が「◯◯.css」になる。
       // { filename: '[name].css' } //⬅︎cssのファイル名が「app.css」になる。
     ),
     new ESLintPlugin({
@@ -83,23 +80,5 @@ module.exports = {
       failOnError: false, //trueにするとエラーでビルド停止
       fix: true, //fixの自動修正を有効化
     }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      inject: 'body',
-    }),
   ],
-
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
-    },
-    watchFiles: {
-      paths: ['src/'],
-      options: {
-        ignored: /node_modules/,
-      },
-    },
-    port: 3000,
-    open: true,
-  },
-};
+});
