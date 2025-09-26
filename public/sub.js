@@ -3475,7 +3475,7 @@ console.log('Hello, sub.js');
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
-/******/ 		__webpack_require__.h = function() { return "f4928565fa97026d7651"; }
+/******/ 		__webpack_require__.h = function() { return "5b01b2c02aee12c25f86"; }
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
