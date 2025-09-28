@@ -27,7 +27,7 @@ module.exports = () =>
       },
       devMiddleware: { writeToDisk: true }, //開発サーバーでビルドしたファイルを「publicフォルダに出力」する
       watchFiles: {
-        paths: ['src/'], //watchFilesは 指定したファイルやフォルダを監視し変更があったら「自動で再ビルド/リロードする」監視する対象のこと
+        paths: ['src/'], //watchFilesは【指定したファイルやフォルダを監視し変更があったら「自動で再ビルド/リロードする」監視する対象のこと】
         options: {
           ignored: /node_modules/, //監視から除外するパスやファイル
         },

@@ -7,7 +7,7 @@ module.exports = ({ outputFile, assetFile }) => ({
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: `${outputFile}.js`,
-    // filename: '[name].[contenthash].bundle.js', //⬅︎ハッシュを使うなら[contenthash]が推奨されている。✖︎[hash]と[chunkhash]は非推奨
+    chunkFilename: `${outputFile}.js`, //vendor.jsとcommon.jsの分割されたファイル用
     clean: true, //publicフォルダを一度削除してからビルドする
   },
   module: {
@@ -81,4 +81,28 @@ module.exports = ({ outputFile, assetFile }) => ({
       fix: true, //fixの自動修正を有効化
     }),
   ],
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all', //「all」は同期・非同期の両方に分割を適用。「async」は非同期のみ。「initial」は同期のみ。
+      minSize: 0,
+      cacheGroups: {
+        // サードパーティ用（例:jQueyなど）
+        vendors: {
+          name: 'vendors', //vendorsという名前で出力 index.htmlに<script defer src="vendors.js">と読み込まれる
+          test: /[\\/]node_modules[\\/]/, //node_modulesフォルダ内のモジュールを対象。「jQueryなどがvendorsに入る」
+          priority: -10, //優先度。数値が大きいほど優先される
+          chunks: 'all',
+        },
+        // 共通モジュール用(common.jsとして出力される。自作コードをまとめて1つのファイルに出力する仕組み)
+        common: {
+          minChunks: 2, // あるファイルが(例えば(utils/index.js)が2つ以上使われたら発動し「まとめてcommon.jsのファイルに出力する」
+          name: 'common', // 出力ファイル名はcommon.js
+          priority: -20,
+          chunks: 'all',
+        },
+        default: false, //⬅︎デフォルトのキャッシュグループが無効になる
+      },
+    },
+  },
 });

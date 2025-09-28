@@ -19,11 +19,13 @@ module.exports = {
     'airbnb-base', // Airbnbベースルール
   ],
   globals: {
+    utils: 'readonly', // utils変数を読み取り専用として許可
     jQuery: 'readonly', // jQuery変数を読み取り専用として許可
     $: 'readonly', // $変数を読み取り専用として許可（jQuery用）
   },
   plugins: ['import'], //import文の正当性チェック用プラグインを使用。存在しないファイルをimportした場合に「警告」を出す
   rules: {
+    semi: ['error', 'always'], //セミコロンを必須にする
     'no-undef': 'off', //グローバル変数を定義しているので、'no-undef'を'off'にする
     'no-console': 'off', //'off'でconsole.logを使っても警告やエラーが出ない
     'no-debugger': 'warn', //debuggerを使うと警告「warn」が出る。debuggerは開発中は便利だが、本番ビルドに残すのはダメなので「'no-debugger':'error'にして【jsファイル内のdebugger;を手動で削除する】」
