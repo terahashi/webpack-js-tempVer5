@@ -3,12 +3,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = ({ outputFile, assetFile }) => ({
-  entry: { app: './src/app.js', sub: './src/sub.js' },
+  entry: { app: 'js/app.js', sub: 'js/sub.js' },
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'dist'), //「dist」を出力先フォルダにする
     filename: `${outputFile}.js`,
     chunkFilename: `${outputFile}.js`, //vendor.jsとcommon.jsの分割されたファイル用
-    clean: true, //publicフォルダを一度削除してからビルドする
+    clean: true, //distフォルダを一度削除してからビルドする
   },
   module: {
     rules: [
@@ -104,5 +104,15 @@ module.exports = ({ outputFile, assetFile }) => ({
         default: false, //⬅︎デフォルトのキャッシュグループが無効になる
       },
     },
+  },
+
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'], //importするときに、拡張子を省略できるようにする
+    alias: {
+      //'@': path.resolve(__dirname, 'src'), //srcフォルダを「@」で指定できるようにする
+      '@scss': path.resolve(__dirname, 'src/scss'), //scssフォルダを「@scss」で指定できるようにする
+      '@images': path.resolve(__dirname, 'src/images'), //imagesフォルダを「images」で指定できるようにする
+    },
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'], //importするときに「src」フォルダも「node_modules」フォルダも両方参照するようにする
   },
 });

@@ -1,5 +1,5 @@
-import './sub';
-import './scss/app.scss';
+import 'js/sub';
+import '@scss/app.scss';
 import jQuery from 'jquery';
 import utils from './utils';
 
@@ -8,6 +8,7 @@ import utils from './utils';
 // }, 2000);
 
 console.log('Hello, app.js Webpack 5 OKKKK!');
+
 const init = async () => {
   await asyncFn();
   jQuery();

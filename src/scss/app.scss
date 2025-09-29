@@ -16,9 +16,8 @@ h1 {
 }
 
 .bg {
-  background-image: url('../images/webpack-logo.svg');
-  // background-image: url('~images/webpack-logo.svg');
-  // background-image: url('~@imgs/webpack-logo.svg');
+  background-image: url('~@images/webpack-logo.svg');
+  // background-image: url('~images/webpack-logo.svg'); //resolveで設定した「modulesのsrc」が参照される
   background-size: cover;
   width: 100px;
   height: 100px;
