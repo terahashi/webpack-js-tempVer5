@@ -109,10 +109,9 @@ module.exports = ({ outputFile, assetFile }) => ({
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'], //importするときに、拡張子を省略できるようにする
     alias: {
-      //'@': path.resolve(__dirname, 'src'), //srcフォルダを「@」で指定できるようにする
       '@scss': path.resolve(__dirname, 'src/scss'), //scssフォルダを「@scss」で指定できるようにする
       '@images': path.resolve(__dirname, 'src/images'), //imagesフォルダを「images」で指定できるようにする
     },
-    modules: [path.resolve(__dirname, 'src'), 'node_modules'], //importするときに「src」フォルダも「node_modules」フォルダも両方参照するようにする
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'], //importするときに「srcフォルダ」も「node_modulesフォルダ」も両方参照するようにする
   },
 });
