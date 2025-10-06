@@ -94,6 +94,7 @@ module.exports = ({ outputFile, assetFile }) => ({
           priority: -10, //優先度。数値が大きいほど優先される
           chunks: 'all',
         },
+
         // 共通モジュール用(common.jsとして出力される。自作コードをまとめて1つのファイルに出力する仕組み)
         common: {
           minChunks: 2, // あるファイルが(例えば(utils/index.js)が2つ以上使われたら発動し「まとめてcommon.jsのファイルに出力する」
