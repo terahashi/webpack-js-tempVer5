@@ -1,5 +1,6 @@
 import 'js/sub';
 import '@scss/app.scss';
+
 import jQuery from 'jquery';
 import utils from './utils';
 
@@ -12,7 +13,7 @@ console.log('Hello, app.js Webpack 5 OKKKK!');
 const init = async () => {
   await asyncFn();
   jQuery();
-  utils.log('hello app.js(utils/index.js)');
+  utils.log('hello app.js(utils/index.js)'); //⬅︎utilsフォルダのindex.jsのlog関数を実行
 };
 
 const init2 = () => {

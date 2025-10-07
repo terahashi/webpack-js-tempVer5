@@ -27,7 +27,7 @@ console.log('Hello, app.js Webpack 5 OKKKK!');
 const init = async () => {
   await asyncFn();
   jquery__WEBPACK_IMPORTED_MODULE_2___default()();
-  _utils__WEBPACK_IMPORTED_MODULE_3__["default"].log('hello app.js(utils/index.js)');
+  _utils__WEBPACK_IMPORTED_MODULE_3__["default"].log('hello app.js(utils/index.js)'); //⬅︎utilsフォルダのindex.jsのlog関数を実行
 };
 const init2 = () => {
   console.log('hello init2');
@@ -52,7 +52,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1759765460767
+        // 1759836594741
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -196,7 +196,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
-/******/ 		__webpack_require__.h = function() { return "0a68276ccb5b37ab706c"; }
+/******/ 		__webpack_require__.h = function() { return "863be2edc538363e49b4"; }
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

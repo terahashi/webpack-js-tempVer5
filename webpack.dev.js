@@ -17,7 +17,15 @@ module.exports = () =>
     plugins: [
       new HtmlWebpackPlugin({
         template: './src/index.html',
+        filename: 'index.html',
         inject: 'body',
+        chunks: ['app'], //app.jsと「app.jsに関連付けられたファイル」だけを読み込む
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/other.html',
+        filename: 'other.html',
+        inject: 'body',
+        chunks: ['sub'], //sub.jsと「sub.jsに関連付けられたファイル」を読み込む
       }),
     ],
 
