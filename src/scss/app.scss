@@ -1,27 +1,57 @@
 //⬇︎「DartSass3.0」以降では「@importではなく@useを使う」ことが推奨されています
 @use './normalize.css'; //normalize.cssの内容を取り込む
 
-h1 {
-  font-size: 2em;
-  transition: all 0.3s;
-  color: green;
+html {
+  font-size: 62.5%; /* 10px = 1rem */
+}
 
-  &:hover {
-    transform: translateX(50px);
-    color: red;
+////⬇︎スマホ用「モバイルファースト」
+span {
+  font-size: 1.6rem;
+  display: block;
+}
+
+h1 {
+  font-size: 2.4rem; /* 24px */
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.6rem;
+}
+
+section {
+  margin-bottom: 20%;
+}
+
+.inner {
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.parts {
+  width: 80%;
+  margin: 0% auto;
+}
+
+.main_section {
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* タブレット以上の場合 */
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 2.4rem; /* 24px */
   }
 }
 
-.imageClass {
-  width: 250px;
-  height: auto;
-  display: flex;
-}
-
-.bg {
-  background-image: url('~@images/webpack-logo.svg');
-  // background-image: url('~images/webpack-logo.svg'); //resolveで設定した「modulesのsrc」が参照される
-  background-size: cover;
-  width: 100px;
-  height: 100px;
+/* PC以上の場合 */
+@media screen and (min-width: 1200px) {
+  body {
+    font-size: 2.4rem; /* 24px */
+  }
 }
