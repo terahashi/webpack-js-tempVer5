@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = ({ outputFile, assetFile }) => ({
   entry: { app: 'js/app.js', sub: 'js/sub.js' },
@@ -79,6 +80,11 @@ module.exports = ({ outputFile, assetFile }) => ({
       emitWarning: true,
       failOnError: false, //trueにするとエラーでビルド停止
       fix: true, //fixの自動修正を有効化
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/images', to: 'images' }, // ← これを追加！
+      ],
     }),
   ],
 
